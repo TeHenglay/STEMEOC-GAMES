@@ -4,7 +4,7 @@
 
 STEMEOC Games is a modern, interactive web platform featuring educational games designed to make learning science, technology, engineering, and mathematics fun and engaging. Built with cutting-edge web technologies, this platform offers immersive gaming experiences that combine entertainment with education.
 
-![STEMEOC Logo](public/banner.png)
+![STEMEOC Logo](public/banner.jpg)
 
 ## 🌟 Features
 
