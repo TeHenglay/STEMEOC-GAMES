@@ -15,7 +15,7 @@ const WORDS_TO_FIND = [
 
 const GRID_SIZE = 14
 const GRID_COLS = 12
-const GAME_TIME = 45 // 45 seconds
+const GAME_TIME = 15 // 30 seconds
 
 export default function PuzzleWordGame() {
   const [grid, setGrid] = useState<string[][]>([])
@@ -345,7 +345,7 @@ export default function PuzzleWordGame() {
               <h1 className="text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Ithaca, serif' }}>
                 WORD SEARCH - POLLUTION
               </h1>
-              <p className="text-gray-300 text-lg">Find 1 environmental word in 45 seconds!</p>
+              <p className="text-gray-300 text-lg">Find 1 environmental word in 15 seconds!</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -362,7 +362,7 @@ export default function PuzzleWordGame() {
 
                     {gameStarted && (
                       <div className="text-center mb-4 p-3 bg-blue-500/20 border border-blue-500 rounded-lg">
-                        <p className="text-white text-sm font-bold mb-1">Find 1 word in 45 seconds!</p>
+                        <p className="text-white text-sm font-bold mb-1">Find 1 word in 15 seconds!</p>
                         <p className="text-white text-xs">
                           {!isSelecting 
                             ? "Click the first letter of a word" 
