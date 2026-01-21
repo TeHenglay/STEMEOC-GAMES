@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import GameSidebar from '@/components/GameSidebar'
 
 export const metadata: Metadata = {
   title: 'STEMEOC | Educational Games',
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+        <GameSidebar />
         {children}
         <Analytics />
       </body>

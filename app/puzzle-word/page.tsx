@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, Facebook, Youtube, Play, RotateCcw } from "lucide-react"
+import { ArrowLeft, Facebook, Youtube, Play, RotateCcw, Clock, Trophy, X } from "lucide-react"
 import Link from "next/link"
 import TargetCursor from "@/components/TargetCursor"
 
@@ -21,6 +21,7 @@ export default function PuzzleWordGame() {
   const [grid, setGrid] = useState<string[][]>([])
   const [foundWords, setFoundWords] = useState<string[]>([])
   const [showFoundModal, setShowFoundModal] = useState(false)
+  const [showTimeUpModal, setShowTimeUpModal] = useState(false)
   const [lastFoundWord, setLastFoundWord] = useState("")
   const [isShaking, setIsShaking] = useState(false)
   const [isSelecting, setIsSelecting] = useState(false)
@@ -131,6 +132,7 @@ export default function PuzzleWordGame() {
           if (prev <= 1) {
             setGameOver(true)
             setGameStarted(false)
+            setShowTimeUpModal(true)
             return 0
           }
           return prev - 1
@@ -146,6 +148,8 @@ export default function PuzzleWordGame() {
     setFoundWords([])
     setGameStarted(true)
     setGameOver(false)
+    setShowFoundModal(false)
+    setShowTimeUpModal(false)
     setTimeLeft(GAME_TIME)
     setSelectedCells([])
     setIsSelecting(false)
@@ -162,6 +166,8 @@ export default function PuzzleWordGame() {
   const resetGame = () => {
     setGameStarted(false)
     setGameOver(false)
+    setShowFoundModal(false)
+    setShowTimeUpModal(false)
     setTimeLeft(GAME_TIME)
     setFoundWords([])
     setSelectedCells([])
@@ -345,7 +351,7 @@ export default function PuzzleWordGame() {
               <h1 className="text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Ithaca, serif' }}>
                 WORD SEARCH - POLLUTION
               </h1>
-              <p className="text-gray-300 text-lg">Find 1 environmental word in 15 seconds!</p>
+              <p className="text-gray-300 text-2xl">Find 1 environmental word in 15 seconds!</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -362,7 +368,7 @@ export default function PuzzleWordGame() {
 
                     {gameStarted && (
                       <div className="text-center mb-4 p-3 bg-blue-500/20 border border-blue-500 rounded-lg">
-                        <p className="text-white text-sm font-bold mb-1">Find 1 word in 15 seconds!</p>
+                        <p className="text-white text-2xl font-bold mb-1">Find 1 word in 15 seconds!</p>
                         <p className="text-white text-xs">
                           {!isSelecting 
                             ? "Click the first letter of a word" 
@@ -391,18 +397,6 @@ export default function PuzzleWordGame() {
                         </Button>
                       )}
                     </div>
-
-                    {gameOver && !showFoundModal && (
-                      <div className="mt-4 p-4 bg-red-500/20 border border-red-500 rounded-lg text-center">
-                        <h3 className="text-white font-bold mb-2">Time's Up!</h3>
-                        <p className="text-gray-300">
-                          {foundWords.length > 0 
-                            ? `You found: ${foundWords[foundWords.length - 1]}` 
-                            : 'No words found this round'
-                          }
-                        </p>
-                      </div>
-                    )}
                   </CardContent>
                 </Card>
               </div>
@@ -475,7 +469,7 @@ export default function PuzzleWordGame() {
                       ))}
                     </div>
                     <div className="mt-4 text-center text-blue-300">
-                      <p className="text-sm">Find any 1 word to win!</p>
+                      <p className="text-2xl">Find any 1 word to win!</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -487,19 +481,83 @@ export default function PuzzleWordGame() {
       
       {/* Found Word Modal */}
       {showFoundModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-8 max-w-md mx-4 text-center shadow-2xl">
-            <div className="text-6xl mb-4">🎉</div>
-            <h2 className="text-2xl font-bold text-green-600 mb-2">Well Done!</h2>
-            <p className="text-lg text-gray-700 mb-6">
-              You found: <span className="font-bold text-blue-600">{lastFoundWord}</span>
-            </p>
-            <button
-              onClick={closeFoundModal}
-              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold"
-            >
-              Reset Game
-            </button>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl transform transition-all animate-in zoom-in-95 duration-300 relative overflow-hidden">
+            <div className="text-center space-y-6">
+              <div className="flex flex-col items-center gap-4 mb-2">
+                <img 
+                  src="/STEM.png" 
+                  alt="STEM Logo" 
+                  className="h-8 w-auto object-contain"
+                />
+                
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-50 shadow-inner p-4">
+                  <Trophy className="w-full h-full text-yellow-500" />
+                </div>
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Ithaca, serif' }}>
+                  Well Done!
+                </h2>
+                <p className="text-gray-500 font-medium">
+                  You found: <span className="font-bold text-blue-600">{lastFoundWord}</span>
+                </p>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-2xl">
+                <div className="text-sm text-gray-500 mb-1">Time Remaining</div>
+                <div className="text-4xl font-bold text-green-500">
+                  {formatTime(timeLeft)}
+                </div>
+              </div>
+
+              <Button 
+                onClick={closeFoundModal}
+                className="w-full bg-black hover:bg-gray-800 text-white py-6 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <X className="w-5 h-5 mr-2" />
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Time Up Modal */}
+      {showTimeUpModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl transform transition-all animate-in zoom-in-95 duration-300 relative overflow-hidden">
+            <div className="text-center space-y-6">
+              <div className="flex flex-col items-center gap-4 mb-2">
+                <img 
+                  src="/STEM.png" 
+                  alt="STEM Logo" 
+                  className="h-8 w-auto object-contain"
+                />
+                
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-50 shadow-inner p-4">
+                  <Clock className="w-full h-full text-red-500" />
+                </div>
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Ithaca, serif' }}>
+                  TIME'S UP!
+                </h2>
+                <p className="text-gray-500 font-medium">
+                  No words found this round.
+                </p>
+              </div>
+
+              <Button 
+                onClick={resetGame}
+                className="w-full bg-black hover:bg-gray-800 text-white py-6 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <X className="w-5 h-5 mr-2" />
+                Close
+              </Button>
+            </div>
           </div>
         </div>
       )}

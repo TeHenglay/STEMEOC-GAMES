@@ -454,7 +454,7 @@ export default function QuizCardGame() {
               <h1 className="text-8xl font-bold text-white mb-2" style={{ fontFamily: 'Ithaca, serif' }}>
                 STEMEOC-Card GAME
               </h1>
-              <p className="text-gray-300 mb-4 text-lg">Click on a card to reveal a question!</p>
+              <p className="text-gray-300 mb-4 text-2xl">Click on a card to reveal a question!</p>
             </div>
 
             <div className="grid grid-cols-5 gap-8 mb-8 mt-20">
@@ -531,7 +531,7 @@ export default function QuizCardGame() {
                           key={index}
                           onClick={() => handleAnswerSelect(index)}
                           disabled={selectedAnswer !== null}
-                          className={`p-6 h-auto text-left justify-start rounded-xl font-medium text-base whitespace-normal break-words min-h-[4rem] cursor-target ${getAnswerButtonClass(index)}`}
+                          className={`p-6 h-auto text-left justify-start rounded-xl font-medium text-2xl whitespace-normal break-words min-h-[4rem] cursor-target ${getAnswerButtonClass(index)}`}
                         >
                           <span className="font-bold mr-4 text-lg bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm flex-shrink-0">
                             {String.fromCharCode(65 + index)}

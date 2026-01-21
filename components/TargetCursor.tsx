@@ -157,8 +157,9 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.set(cursorRef.current, { rotation: 0 });
 
       const updateCorners = (mouseX?: number, mouseY?: number) => {
+        if (!cursorRef.current) return;
         const rect = target.getBoundingClientRect();
-        const cursorRect = cursorRef.current!.getBoundingClientRect();
+        const cursorRect = cursorRef.current.getBoundingClientRect();
 
         const cursorCenterX = cursorRect.left + cursorRect.width / 2;
         const cursorCenterY = cursorRect.top + cursorRect.height / 2;

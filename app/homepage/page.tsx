@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Menu, Facebook, Youtube, Gamepad2, Puzzle } from "lucide-react"
+import { Menu, Facebook, Youtube, Gamepad2, Puzzle, Calculator, Brain, Cpu, Lightbulb } from "lucide-react"
 import Link from "next/link"
 import TargetCursor from "@/components/TargetCursor"
 
@@ -109,11 +109,16 @@ export default function Homepage() {
               
               {/* Center - Logo */}
               <div className="flex items-center">
-                <img 
-                  src="/stemeoc-logo.png" 
-                  alt="STEMEOC Logo" 
-                  className="h-10 w-auto"
-                />
+                <button 
+                  onClick={() => window.open('https://stemcambodia.ngo/', '_blank')}
+                  className="cursor-pointer hover:opacity-80 transition-opacity"
+                >
+                  <img 
+                    src="/stemeoc-logo.png" 
+                    alt="STEMEOC Logo" 
+                    className="h-10 w-auto"
+                  />
+                </button>
               </div>
               
               {/* Right - Social Icons */}
@@ -144,23 +149,23 @@ export default function Homepage() {
             {/* Header */}
             <div className="text-center mb-16 mt-28">
               <h1 className="text-8xl font-bold text-white mb-4" style={{ fontFamily: 'Ithaca, serif' }}>
-                STEMEOC GAMES
+                STEMEOC EDUCATION GAMES
               </h1>
-              <p className="text-gray-300 mb-8 text-xl">Choose your adventure and test your knowledge!</p>
+
             </div>
 
             {/* Games Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 max-w-7xl mx-auto">
               {/* Card Game */}
               <Link href="/card-game">
                 <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
-                  <CardContent className="p-8 text-center">
-                    <div className="mb-6">
-                      <div className="w-24 h-24 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-black/20 transition-all duration-300">
-                        <Gamepad2 className="w-12 h-12 text-black" />
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Gamepad2 className="w-10 h-10 text-black" />
                       </div>
                     </div>
-                    <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Ithaca, serif' }}>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
                       <span style={{ color: '#ef4444' }}>C</span>
                       <span style={{ color: '#f97316' }}>a</span>
                       <span style={{ color: '#22c55e' }}>r</span>
@@ -171,14 +176,14 @@ export default function Homepage() {
                       <span style={{ color: '#22c55e' }}>m</span>
                       <span style={{ color: '#3b82f6' }}>e</span>
                     </h2>
-                    <p className="text-black/80 text-lg leading-relaxed">
-                      Test your STEM knowledge with our interactive card-based quiz game. 
-                      Flip cards and answer questions across various science topics.
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Answer STEM quiz questions. Flip cards and test your knowledge!
                     </p>
-                    <div className="mt-6 inline-block p-[3px] rounded-full" style={{
+                    <div className="text-xs text-black/60 mb-4">⏱️ 30 seconds per question</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
                       background: 'linear-gradient(90deg, #ef4444, #3b82f6, #f97316, #22c55e)'
                     }}>
-                      <div className="inline-flex items-center text-black/90 font-semibold px-4 py-2 rounded-full bg-white">
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
                         <span>Play Now</span>
                         <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                       </div>
@@ -190,13 +195,13 @@ export default function Homepage() {
               {/* Puzzle Word Game */}
               <Link href="/puzzle-word">
                 <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
-                  <CardContent className="p-8 text-center">
-                    <div className="mb-6">
-                      <div className="w-24 h-24 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-black/20 transition-all duration-300">
-                        <Puzzle className="w-12 h-12 text-black" />
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Puzzle className="w-10 h-10 text-black" />
                       </div>
                     </div>
-                    <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Ithaca, serif' }}>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
                       <span style={{ color: '#ef4444' }}>P</span>
                       <span style={{ color: '#ef4444' }}>u</span>
                       <span style={{ color: '#f97316' }}>z</span>
@@ -209,15 +214,14 @@ export default function Homepage() {
                       <span style={{ color: '#3b82f6' }}>r</span>
                       <span style={{ color: '#ef4444' }}>d</span>
                     </h2>
-                    <p className="text-black/80 text-lg leading-relaxed">
-                      Challenge yourself with word puzzles and brain teasers. 
-                      Solve crosswords, anagrams, and vocabulary challenges.
-                      Test your skills and expand knowledge.
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Find environmental words in a grid. Quick thinking required!
                     </p>
-                    <div className="mt-6 inline-block p-[3px] rounded-full" style={{
+                    <div className="text-xs text-black/60 mb-4">⏱️ 15 seconds to find 1 word</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
                       background: 'linear-gradient(90deg, #ef4444, #3b82f6, #f97316, #22c55e)'
                     }}>
-                      <div className="inline-flex items-center text-black/90 font-semibold px-4 py-2 rounded-full bg-white">
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
                         <span>Play Now</span>
                         <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                       </div>
@@ -225,6 +229,163 @@ export default function Homepage() {
                   </CardContent>
                 </Card>
               </Link>
+
+              {/* Math Sprint */}
+              <Link href="/math-sprint">
+                <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Calculator className="w-10 h-10 text-black" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
+                      <span style={{ color: '#ea580c' }}>M</span>
+                      <span style={{ color: '#f97316' }}>a</span>
+                      <span style={{ color: '#fb923c' }}>t</span>
+                      <span style={{ color: '#fdba74' }}>h</span>
+                      <span style={{ color: '#ea580c' }}> </span>
+                      <span style={{ color: '#ea580c' }}>S</span>
+                      <span style={{ color: '#f97316' }}>p</span>
+                      <span style={{ color: '#fb923c' }}>r</span>
+                      <span style={{ color: '#fdba74' }}>i</span>
+                      <span style={{ color: '#fed7aa' }}>n</span>
+                      <span style={{ color: '#ea580c' }}>t</span>
+                    </h2>
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Solve math problems as fast as you can. Get 6 correct to win!
+                    </p>
+                    <div className="text-xs text-black/60 mb-4">⏱️ 45 seconds challenge</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
+                      background: 'linear-gradient(90deg, #ea580c, #f97316, #fb923c)'
+                    }}>
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
+                        <span>Play Now</span>
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* True or False */}
+              <Link href="/true-false">
+                <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Brain className="w-10 h-10 text-black" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
+                      <span style={{ color: '#3b82f6' }}>T</span>
+                      <span style={{ color: '#60a5fa' }}>r</span>
+                      <span style={{ color: '#93c5fd' }}>u</span>
+                      <span style={{ color: '#3b82f6' }}>e</span>
+                      <span style={{ color: '#60a5fa' }}> </span>
+                      <span style={{ color: '#3b82f6' }}>o</span>
+                      <span style={{ color: '#60a5fa' }}>r</span>
+                      <span style={{ color: '#93c5fd' }}> </span>
+                      <span style={{ color: '#3b82f6' }}>F</span>
+                      <span style={{ color: '#60a5fa' }}>a</span>
+                      <span style={{ color: '#93c5fd' }}>l</span>
+                      <span style={{ color: '#3b82f6' }}>s</span>
+                      <span style={{ color: '#60a5fa' }}>e</span>
+                    </h2>
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Test your science knowledge. Get 15 correct to win!
+                    </p>
+                    <div className="text-xs text-black/60 mb-4">⏱️ 45 seconds challenge</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
+                      background: 'linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)'
+                    }}>
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
+                        <span>Play Now</span>
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Memory Match */}
+              <Link href="/memory-match">
+                <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Cpu className="w-10 h-10 text-black" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
+                      <span style={{ color: '#ec4899' }}>M</span>
+                      <span style={{ color: '#f472b6' }}>e</span>
+                      <span style={{ color: '#f9a8d4' }}>m</span>
+                      <span style={{ color: '#ec4899' }}>o</span>
+                      <span style={{ color: '#f472b6' }}>r</span>
+                      <span style={{ color: '#f9a8d4' }}>y</span>
+                      <span style={{ color: '#ec4899' }}> </span>
+                      <span style={{ color: '#ec4899' }}>M</span>
+                      <span style={{ color: '#f472b6' }}>a</span>
+                      <span style={{ color: '#f9a8d4' }}>t</span>
+                      <span style={{ color: '#ec4899' }}>c</span>
+                      <span style={{ color: '#f472b6' }}>h</span>
+                    </h2>
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Match all 8 STEM pairs to win. Remember card positions!
+                    </p>
+                    <div className="text-xs text-black/60 mb-4">⏱️ 30 seconds challenge</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
+                      background: 'linear-gradient(90deg, #ec4899, #f472b6, #f9a8d4)'
+                    }}>
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
+                        <span>Play Now</span>
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* Code Breaker */}
+              <Link href="/code-breaker">
+                <Card className="group cursor-pointer transition-all duration-500 hover:scale-105 hover:rotate-1 bg-white shadow-2xl border-4 border-black rounded-3xl overflow-hidden cursor-target">
+                  <CardContent className="p-6 text-center">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 mx-auto bg-black/10 rounded-full flex items-center justify-center mb-3 group-hover:bg-black/20 transition-all duration-300">
+                        <Lightbulb className="w-10 h-10 text-black" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ithaca, serif' }}>
+                      <span style={{ color: '#06b6d4' }}>C</span>
+                      <span style={{ color: '#22d3ee' }}>o</span>
+                      <span style={{ color: '#67e8f9' }}>d</span>
+                      <span style={{ color: '#06b6d4' }}>e</span>
+                      <span style={{ color: '#22d3ee' }}> </span>
+                      <span style={{ color: '#06b6d4' }}>B</span>
+                      <span style={{ color: '#22d3ee' }}>r</span>
+                      <span style={{ color: '#67e8f9' }}>e</span>
+                      <span style={{ color: '#06b6d4' }}>a</span>
+                      <span style={{ color: '#22d3ee' }}>k</span>
+                      <span style={{ color: '#67e8f9' }}>e</span>
+                      <span style={{ color: '#06b6d4' }}>r</span>
+                    </h2>
+                    <p className="text-black/80 text-sm leading-relaxed mb-4">
+                      Solve number patterns. Get 40 points to win!
+                    </p>
+                    <div className="text-xs text-black/60 mb-4">⏱️ 45 seconds challenge</div>
+                    <div className="inline-block p-[2px] rounded-full" style={{
+                      background: 'linear-gradient(90deg, #06b6d4, #22d3ee, #67e8f9)'
+                    }}>
+                      <div className="inline-flex items-center text-black/90 font-semibold px-3 py-1.5 rounded-full bg-white text-sm">
+                        <span>Play Now</span>
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+
             </div>
 
             {/* Features Section */}
